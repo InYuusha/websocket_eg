@@ -1,0 +1,30 @@
+<html>
+    <head>
+        <title>Home Page</title>
+        <script src="/socket.io/socket.io.js"></script>
+    </head>
+    <body>
+        <h1>Hello World</h1>
+        <p>Connect or Disconnect to server</p>
+        <button class="con">Connect</button>
+        <button class="dis">Disconnect</button>
+
+        <div class="connectionStatus"></div>
+
+        <script>
+            var connectButton= document.querySelector('.con')
+            var disconnectButton = document.querySelector('.dis')
+            var connectionStatus = document.querySelector('.connectionStatus')
+            var socket=io()
+            $('.con').click(()=>{
+                socket.connect('http:127.0.0.1:3000',{'forceNew':true})
+            })
+    
+            disconnectButton.addEventListener('click',()=>{
+                socket.disconnect('http://127.0.0.1:3000')
+                connectionStatus.textContent="Disconnected"
+            })
+
+        </script>        
+    </body>
+</html>
